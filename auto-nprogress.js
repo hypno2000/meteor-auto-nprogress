@@ -15,8 +15,15 @@ if(Meteor.isClient){
     Meteor._originalSubscribe = Meteor.subscribe;
 
     Meteor.subscribe = function(subscribeName){
-
-      if(subscribeName && !isMeteorSubscription(subscribeName)) {
+      
+      if (!subscribeName) {
+        return;
+      }
+      
+      if(isMeteorSubscription(subscribeName)) {
+        return Meteor._originalSubscribe.apply(this, arguments);
+      }
+      else {
 
         //preserves original onReady and onError functions
         var newArgs = arguments;
@@ -78,7 +85,7 @@ if(Meteor.isClient){
               NProgress.done();
               clearInterval(c);
             }
-          }, 80);
+          }, 80);newArgs
         }
         var handle = Meteor._originalSubscribe.apply(_this, newArgs);
         return handle;
