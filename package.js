@@ -1,5 +1,5 @@
 Package.on_use(function (api) {
-    api.use('nprogress');
+    api.use('mrt:nprogress');
     api.add_files('auto-nprogress.js', 'client');
 });
 

@@ -24,7 +24,6 @@ if(Meteor.isClient){
         return Meteor._originalSubscribe.apply(this, arguments);
       }
       else {
-
         //preserves original onReady and onError functions
         var newArgs = arguments;
         var callbacks = {};
